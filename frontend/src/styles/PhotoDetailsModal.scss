@@ -30,7 +30,7 @@
 }
 
 .photo-details-modal__image {
-  max-width: 95%;
+  max-width: 100%;
   border-radius: 8px;
 }
 
@@ -55,4 +55,43 @@
   margin-top: 24px;
   margin-bottom: 24px;
   width: 90%;
+}
+
+.container {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.photo-details-modal__user-profile {
+  object-fit: cover;
+  border-radius: 100%;
+  vertical-align: middle;
+  margin-right: 8px;
+  width: 40px;
+  height: 40px;
+}
+
+.photo-details-modal__user-details {
+  display: flex;
+}
+
+.photo-details-modal__user-info {
+  margin-top: 5px;
+  font-weight: 700;
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.photo-details-modal__user-location {
+  color: #838383;
+}
+
+.related-photos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
