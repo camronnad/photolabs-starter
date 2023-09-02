@@ -28,8 +28,11 @@
   border-radius: 100%;
   vertical-align: middle;
   margin-right: 8px;
-  width: 40px;
-  height: 40px;
+  width: 47px;
+  height: 47px;
+  margin-top: 5px;
+  margin-bottom: 3px;
+  margin-left: 1px;
 }
 
 .photo-list__user-details {
@@ -37,12 +40,19 @@
 }
 
 .photo-list__user-info {
-  margin-top: 5px;
+  margin-top: 6px;
   font-weight: 700;
   font-size: 12px;
   margin-left: 8px;
+  margin-bottom: 6px;
 }
 
 .photo-list__user-location {
   color: #838383;
+  margin: 3px;
+}
+
+.photo-list__info-location {
+margin-top: 5px;
+
 }

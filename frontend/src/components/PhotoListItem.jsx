@@ -4,7 +4,7 @@ import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
   
-const onCLick = () => {
+const onClick = () => {
  
   props.openModal()
   props.setModalDetails(props.data)
@@ -13,7 +13,7 @@ const onCLick = () => {
 return (
     <div className="photo-list__item">
       <PhotoFavButton toggleFavorite={props.toggleFavorite} photoId={props.data.id} favoriteIds={props.likedPhotoIds} />
-      <img src={props.data.urls.full} className="photo-list__image" onClick={onCLick} />
+      <img src={props.data.urls.full} className="photo-list__image" onClick={onClick} />
 
       <div className="photo-list__user-details">
         <img src={props.data.user.profile} className="photo-list__user-profile" /> 

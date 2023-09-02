@@ -13,26 +13,27 @@ const App = () => {
     likedPhotoIds,
     openModal,
     closeModal,
-    isModalOpen,
     modalDetails,
     setModalDetails,
   } = useApplicationData();
+
+  console.log("hi amanda")
 
   return (
     <div className="App">
       <HomeRoute
         photos={state.photoData}
-        topics={state.photoData}
+        topics={state.topicData}
         openModal={openModal}
         setModalDetails={setModalDetails}
         likedPhotoIds={likedPhotoIds}
         toggleFavorite={toggleFavorite}
       />
-      {isModalOpen && (
+      {state.isModalOpen && (
         <PhotoDetailsModal
           photos={state.photoData}
           closeModal={closeModal}
-          modalDetails={modalDetails}
+          modalDetails={state.modalDetails}
           toggleFavorite={toggleFavorite}
           likedPhotoIds={likedPhotoIds}
         />

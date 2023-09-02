@@ -1,6 +1,6 @@
+
 import React, { useEffect, useReducer, useState } from "react";
-import photos from "../mocks/photos";
-import topics from "mocks/topics";
+
 
 const initialState = {
   photoData: [],
@@ -60,10 +60,23 @@ const useApplicationData = () => {
   // Here, you initialize the state and the dispatch function using useReducer.
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // useEffect runs after the initial render and sets the initial photo data.
   useEffect(() => {
-    dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: photos });
-  }, []);
+    // Fetch the photos from the "/api/photos" endpoint
+    fetch("/api/photos")
+      .then(response => response.json())  // Convert the response to JSON
+      .then(photos => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: photos}))  // Log the data to the console
+      .catch(error => console.log("Oops, something went wrong:", error));  // Log any errors
+  }, []);  // Empty array means this effect runs only once when the component mounts
+  
+
+
+  useEffect(() => {
+    // Fetch the photos from the "/api/photos" endpoint
+    fetch("/api/topics")
+      .then(response => response.json())  // Convert the response to JSON
+      .then(topics => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: topics }))  // Log the data to the console
+      .catch(error => console.log("Oops, something went wrong:", error));  // Log any errors
+  }, []);  // Em
 
   // Function to toggle favorites; it dispatches an action to the reducer.
   const toggleFavorite = (id) => {
@@ -91,6 +104,7 @@ const useApplicationData = () => {
     closeModal,
     setModalDetails,
     likedPhotoIds: state.likedPhotoIds
+
   };
 };
 
