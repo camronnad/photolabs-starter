@@ -4,15 +4,15 @@ import TopNavigationBar from "components/TopNavigationBar";
 import PhotoList from "components/PhotoList";
 
 const HomeRoute = (props) => {
-
   return (
     <div className="home-route">
-      <TopNavigationBar 
+      <TopNavigationBar
         topics={props.topics}
-        likedPhotoIds={props.likedPhotoIds} 
+        likedPhotoIds={props.likedPhotoIds}
+        onTopicSelection={props.onTopicSelection}
       />
-      <PhotoList 
-        photos={props.photos} 
+      <PhotoList
+        photos={props.photos}
         toggleFavorite={props.toggleFavorite}
         likedPhotoIds={props.likedPhotoIds}
         openModal={props.openModal}

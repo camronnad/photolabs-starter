@@ -1,6 +1,4 @@
-
 import React, { useEffect, useReducer, useState } from "react";
-
 
 const initialState = {
   photoData: [],
@@ -11,18 +9,19 @@ const initialState = {
 };
 
 export const ACTIONS = {
-  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
-  SET_TOPIC_DATA: 'SET_TOPIC_DATA',
-  TOGGLE_MODAL: 'TOGGLE_MODAL',
-  SET_MODAL_DETAILS: 'SET_MODAL_DETAILS',
-  TOGGLE_FAVORITE: 'TOGGLE_FAVORITE',
+  SET_PHOTO_DATA: "SET_PHOTO_DATA",
+  SET_TOPIC_DATA: "SET_TOPIC_DATA",
+  TOGGLE_MODAL: "TOGGLE_MODAL",
+  SET_MODAL_DETAILS: "SET_MODAL_DETAILS",
+  TOGGLE_FAVORITE: "TOGGLE_FAVORITE",
+  GET_PHOTOS_BY_TOPICS: "GET_PHOTOS_BY_TOPICS",
 };
 
 function reducer(state, action) {
   switch (action.type) {
     // If the action is to set photo data
     case ACTIONS.SET_PHOTO_DATA:
-      // Return a new state object, keeping everything else the same 
+      // Return a new state object, keeping everything else the same
       // but update photoData with the new info (action.payload)
       return { ...state, photoData: action.payload };
 
@@ -38,13 +37,17 @@ function reducer(state, action) {
     case ACTIONS.SET_MODAL_DETAILS:
       return { ...state, modalDetails: action.payload };
 
+    case ACTIONS.GET_PHOTOS_BY_TOPICS:
+      return { ...state, photoData: action.payload };
+
     // For toggling favorite photos
     case ACTIONS.TOGGLE_FAVORITE:
       const isFavorite = state.likedPhotoIds.includes(action.payload);
       // If the photo is already a favorite, remove it; otherwise, add it
+
       return {
         ...state,
-        'likedPhotoIds': isFavorite
+        likedPhotoIds: isFavorite
           ? state.likedPhotoIds.filter((id) => id !== action.payload)
           : [...state.likedPhotoIds, action.payload],
       };
@@ -60,23 +63,37 @@ const useApplicationData = () => {
   // Here, you initialize the state and the dispatch function using useReducer.
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const onTopicSelection = (id) => {
+    fetch(`api/topics/photos/${id}`)
+    .then((response) => response.json()) // Convert the response to JSON
+    .then((photosByTopic) => 
+      dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: photosByTopic })
+    ) // Log the data to the console
+    .catch((error) => console.log("Oops, something went wrong:", error)); // Log any errors 
+  };
+
+
   useEffect(() => {
     // Fetch the photos from the "/api/photos" endpoint
     fetch("/api/photos")
-      .then(response => response.json())  // Convert the response to JSON
-      .then(photos => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: photos}))  // Log the data to the console
-      .catch(error => console.log("Oops, something went wrong:", error));  // Log any errors
-  }, []);  // Empty array means this effect runs only once when the component mounts
-  
-
+      .then((response) => response.json()) // Convert the response to JSON
+      .then((photos) =>
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: photos })
+      ) // Log the data to the console
+      .catch((error) => console.log("Oops, something went wrong:", error)); // Log any errors
+  }, []); // Empty array means this effect runs only once when the component mounts
 
   useEffect(() => {
     // Fetch the photos from the "/api/photos" endpoint
     fetch("/api/topics")
-      .then(response => response.json())  // Convert the response to JSON
-      .then(topics => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: topics }))  // Log the data to the console
-      .catch(error => console.log("Oops, something went wrong:", error));  // Log any errors
-  }, []);  // Em
+      .then((response) => response.json()) // Convert the response to JSON
+      .then((topics) =>
+        dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: topics })
+      ) // Log the data to the console
+      .catch((error) => console.log("Oops, something went wrong:", error)); // Log any errors
+  }, []);
+
+
 
   // Function to toggle favorites; it dispatches an action to the reducer.
   const toggleFavorite = (id) => {
@@ -103,10 +120,9 @@ const useApplicationData = () => {
     openModal,
     closeModal,
     setModalDetails,
-    likedPhotoIds: state.likedPhotoIds
-
+    likedPhotoIds: state.likedPhotoIds,
+    onTopicSelection,
   };
 };
-
 
 export default useApplicationData;

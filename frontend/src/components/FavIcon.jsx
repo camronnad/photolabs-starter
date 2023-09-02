@@ -5,7 +5,7 @@ const FavIcon = ({ displayAlert, selected, largerSizing, color }) => {
 
   useEffect(() => {
     if (largerSizing) {
-      setSize({ width: 24, height: 20 })
+      setSize({ width: 26, height: 22 })
     }
   }, []);
   return (

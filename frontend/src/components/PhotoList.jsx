@@ -6,7 +6,7 @@ const PhotoList = (props) => {
  
   return (
     <ul className="photo-list">
-      {props.photos.map((photoData, index) => {
+      {props.photos.map((photoData, index) => {  
         return (
           <PhotoListItem
             key={index}

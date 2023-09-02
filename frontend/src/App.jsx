@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import "./App.scss";
 import HomeRoute from "routes/HomeRoute";
-import PhotoDetailsModal from "routes/PhotoDetailsModal"; // Import the Modal
-import photos from "mocks/photos";
-import topics from "mocks/topics";
+import PhotoDetailsModal from "routes/PhotoDetailsModal";
 import useApplicationData from "hooks/useApplicationData";
 
 const App = () => {
@@ -13,11 +11,9 @@ const App = () => {
     likedPhotoIds,
     openModal,
     closeModal,
-    modalDetails,
     setModalDetails,
+    onTopicSelection,
   } = useApplicationData();
-
-  console.log("hi amanda")
 
   return (
     <div className="App">
@@ -28,6 +24,7 @@ const App = () => {
         setModalDetails={setModalDetails}
         likedPhotoIds={likedPhotoIds}
         toggleFavorite={toggleFavorite}
+        onTopicSelection={onTopicSelection}
       />
       {state.isModalOpen && (
         <PhotoDetailsModal

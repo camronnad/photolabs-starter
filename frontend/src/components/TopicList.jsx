@@ -7,7 +7,7 @@ const TopicList = (props) => {
   return (
     <div className="top-nav-bar__topic-list">
       {props.topics.map((topic, index) => (
-        <TopicListItem key={index} topic={topic} />
+        <TopicListItem key={index} topic={topic} topicId={topic.id} onTopicSelection={props.onTopicSelection} />
       ))}
     </div>
   );

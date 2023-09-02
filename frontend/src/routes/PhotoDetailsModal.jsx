@@ -9,9 +9,9 @@ import PhotoFavButton from "components/PhotoFavButton";
 const PhotoDetailsModal = (props) => {
   const photoUrl = props.modalDetails.urls.regular;
   // console.log(props.photos);
-  console.log(props.modalDetails)
- 
-  console.log(Object.entries(props.modalDetails['similar_photos']))
+  console.log(props.modalDetails);
+
+  console.log(Object.entries(props.modalDetails["similar_photos"]));
   // debugger
   return (
     <div className="photo-details-modal">
@@ -52,19 +52,21 @@ const PhotoDetailsModal = (props) => {
             {props.modalDetails.location.country}
           </p>
         </div>
-        
       </div>
-      <div className="photo-details-modal__top-bar">
-          <div className="">
-            <PhotoList
-              photos={Object.values(props.modalDetails['similar_photos'])}
-              toggleFavorite={props.toggleFavorite}
-              likedPhotoIds={props.likedPhotoIds}
-              openModal={props.openModal}
-              setModalDetails={props.setModalDetails}
-            />
-          </div>
-        </div>
+      <div className="horizontal-line">
+
+      </div>
+      <p id="related-photos-title">Related Photos</p>
+
+      <div>
+        <PhotoList
+          photos={Object.values(props.modalDetails["similar_photos"])}
+          toggleFavorite={props.toggleFavorite}
+          likedPhotoIds={props.likedPhotoIds}
+          openModal={props.openModal}
+          setModalDetails={props.setModalDetails}
+        />
+      </div>
     </div>
   );
 };
