@@ -1,8 +1,6 @@
 import React from "react";
-
 import "../styles/PhotoDetailsModal.scss";
 import closeSymbol from "../assets/closeSymbol.svg";
-import photos from "mocks/photos";
 import PhotoList from "components/PhotoList";
 import PhotoFavButton from "components/PhotoFavButton";
 
@@ -53,9 +51,7 @@ const PhotoDetailsModal = (props) => {
           </p>
         </div>
       </div>
-      <div className="horizontal-line">
-
-      </div>
+      <div className="horizontal-line"></div>
       <p id="related-photos-title">Related Photos</p>
 
       <div>

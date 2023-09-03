@@ -68,7 +68,7 @@ const useApplicationData = () => {
     .then((response) => response.json()) // Convert the response to JSON
     .then((photosByTopic) => 
       dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: photosByTopic })
-    ) // Log the data to the console
+    ) 
     .catch((error) => console.log("Oops, something went wrong:", error)); // Log any errors 
   };
 
@@ -79,7 +79,7 @@ const useApplicationData = () => {
       .then((response) => response.json()) // Convert the response to JSON
       .then((photos) =>
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: photos })
-      ) // Log the data to the console
+      ) 
       .catch((error) => console.log("Oops, something went wrong:", error)); // Log any errors
   }, []); // Empty array means this effect runs only once when the component mounts
 
@@ -89,7 +89,7 @@ const useApplicationData = () => {
       .then((response) => response.json()) // Convert the response to JSON
       .then((topics) =>
         dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: topics })
-      ) // Log the data to the console
+      ) 
       .catch((error) => console.log("Oops, something went wrong:", error)); // Log any errors
   }, []);
 
