@@ -6,11 +6,7 @@ import PhotoFavButton from "components/PhotoFavButton";
 
 const PhotoDetailsModal = (props) => {
   const photoUrl = props.modalDetails.urls.regular;
-  // console.log(props.photos);
-  console.log(props.modalDetails);
-
-  console.log(Object.entries(props.modalDetails["similar_photos"]));
-  // debugger
+  
   return (
     <div className="photo-details-modal">
       <header className="photo-details-modal__header">

@@ -3,7 +3,7 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
-  const onClick = () => {
+  const handleClick = () => {
     props.openModal();
     props.setModalDetails(props.data);
   };
@@ -18,7 +18,7 @@ const PhotoListItem = (props) => {
       <img
         src={props.data.urls.full}
         className="photo-list__image"
-        onClick={onClick}
+        onClick={handleClick}
       />
 
       <div className="photo-list__user-details">
